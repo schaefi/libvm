@@ -4,7 +4,7 @@
 //====================================
 // Defines...
 //------------------------------------
-#define VM_INITRD "/home/ms/Project/libvm/initrd"
-#define VM_KERNEL "/home/ms/Project/libvm/kernel"
+#define VM_INITRD "/suse/ms/Project/libvm/initrd"
+#define VM_KERNEL "/suse/ms/Project/libvm/kernel"
 
 #endif

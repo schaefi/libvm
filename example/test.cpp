@@ -11,7 +11,7 @@ using namespace LibVM;
 
 int main(int argc,char*argv[]) {
 
-	QApplication app (argc,argv);
+	QApplication app (argc,argv,false);
 	
 
 	VMAttach* p = new VMAttach();
