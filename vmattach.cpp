@@ -59,10 +59,12 @@ bool VMAttach::init (void) {
 	int rpos = modeExp.indexIn (in);
 	if (rpos >= 0) {
 		pty = modeExp.cap(1);
+	} else {
+		return false;
 	}
 	QFile* fp = new QFile (pty);
-	while (! fp->exists()) {
-		//printf ("Waiting for terminal to appear\n");
+	if (! fp->exists()) {
+		return false;
 	}
 	fp -> open ( QIODevice::ReadOnly );
 	QTextStream bootData (fp);
@@ -73,12 +75,13 @@ bool VMAttach::init (void) {
 		if (rpos >= 0) {
 			//printf ("BOOTING DONE\n");
 			//printf ("%s\n",line.toLatin1().data());
-			sleep (1); // let the shell settle
-			break;
+			fp -> close();
+			return true;
 		}
 		line = bootData.readLine();
 	}
 	fp -> close();
+	return false;
 }
 
 QString VMAttach::getPTY (void) {

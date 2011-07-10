@@ -35,7 +35,6 @@ STATUS        : Status: Development
 //------------------------------------
 #define VM_READ  0
 #define VM_WRITE 1
-#define IDLE     1
 
 namespace LibVM {
 //====================================
