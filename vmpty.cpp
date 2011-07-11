@@ -24,7 +24,6 @@ QMutex mutex;
 //------------------------------------
 VMPty::VMPty ( const QString& device ) {
 	pty = device;
-	storage = new QString();
 	recording = false;
 }
 
@@ -58,7 +57,7 @@ void VMPty::run (void) {
 void VMPty::checkBoot (void) {
 	while (true) {
 		sleep (1);
-		writeNoLock ("BOOT DONE");
+		writeNoLock ("echo 'BOOT DONE'");
 	}
 }
 
@@ -67,19 +66,23 @@ void VMPty::checkBoot (void) {
 //------------------------------------
 void VMPty::read  (void) {
 	QString *line = 0;
+	storage = new QString();
 	while ( line = read_line (fp) ) {
-		//printf ("'%s'\n",line->toLatin1().data());
+		//printf ("==> '%s'\n",line->toLatin1().data());
+		if (line->contains("BOOT DONE")) {
+			continue;
+		}
 		if (line->compare ("(none):/ #") == 0) {
-			//printf ("**************** UNLOCK\n");
 			mutex.unlock();
 		}
 		if (recording) {
-			if (line->compare (done) == 0) {
+			if (line->contains (done)) {
 				recording = false;
 				mutex.unlock();
+			} else {
+				QTextStream s(storage);
+				s << *line << endl;
 			}
-			QTextStream s(storage);
-			s << *line << endl;
 		}
 	}
 	close (fp);
@@ -106,13 +109,14 @@ void VMPty::writeNoLock (const QString& data) {
 void VMPty::startRecordingUntil (const QString& flag) {
 	recording = true;
 	storage   = new QString ();
-	done     = flag;
+	done      = flag;
 }
 
 //====================================
 // readRecorded
 //------------------------------------
 QString* VMPty::readRecorded (void) {
+	sync();
 	return storage;
 }
 

@@ -63,9 +63,8 @@ bool VMAttach::init (void) {
 	//------------------------------------
 	QTextStream(&params)
 		<< "qemu-kvm"
-		<< " --kernel " << VM_KERNEL
-		<< " --initrd " << VM_INITRD
-		<< " --append " << "\"console=ttyS0 kiwistderr=/dev/hvc0\""
+		<< " -cdrom " << VM_BOOT
+		<< " -boot "  << "d"
 		<< " -net " << "nic,model=virtio,macaddr=52:54:00:12:34:51"
 		<< " -virtioconsole " << "pty";
 	if (! disk.isEmpty()) {
@@ -120,7 +119,7 @@ bool VMAttach::init (void) {
 		int rpos = bootDoneExp.indexIn (*line);
 		if (rpos >= 0) {
 			//printf ("BOOTING DONE\n");
-			w->exit();
+			w -> terminate();
 			close(mFD);
 			return true;
 		}

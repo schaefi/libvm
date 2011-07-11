@@ -28,8 +28,7 @@ namespace LibVM {
 //====================================
 // Defines...
 //------------------------------------
-#define VM_INITRD "/home/ms/Project/libvm/initrd"
-#define VM_KERNEL "/home/ms/Project/libvm/kernel"
+#define VM_BOOT "/home/ms/Project/libvm/boot.iso"
 
 //====================================
 // Defines (macros)...

@@ -22,6 +22,8 @@ int main(int argc,char*argv[]) {
 	QString device = p -> getPTY();
 	printf ("%s\n",device.toLatin1().data());
 
+	return app.exec();
+
 	VMPty* r = new VMPty (device);
 	r -> setOperationMode (VM_READ);
 	r -> start();
@@ -30,19 +32,28 @@ int main(int argc,char*argv[]) {
 	w -> setOperationMode (VM_WRITE);
 	w -> start();
 
-	w->write ("mount /dev/vda1 /mnt");
+	//w->write ("mount /dev/vda1 /mnt");
 	//w->write ("find /mnt -mtime -5 -print");
-	w->write ("find /mnt");
+	//w->write ("find /mnt");
 
 	r->startRecordingUntil ("***done***");
 
+	w->write ("find /etc");
+
+
+	w->write ("ls -l");
+
+
 	w->write ("echo ***done***");
-	w->write ("umount /mnt");
+	//w->write ("umount /mnt");
+
+
+
 
 	QString* out = r->readRecorded();
 	printf ("%s\n",out->toLatin1().data());
 
-	//return app.exec();
+	return app.exec();
 
 	//return app.exec(); // event loop required for timer
 

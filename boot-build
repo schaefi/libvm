@@ -3,3 +3,4 @@
 linux32 kiwi --build suse-11.4 \
 	--set-repo iso:///image/CDs/openSUSE-11.4-DVD-i586.iso \
 	-d /tmp/libvm --type cpio --force-new-root
+linux32 kiwi --bootcd /tmp/libvm/initrd-vmxboot-suse-11.4.i686-2.7.1.gz
