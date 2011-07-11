@@ -25,11 +25,16 @@ STATUS        : Status: Development
 #include <qregexp.h>
 #include <qprocess.h>
 #include <qfile.h>
+#include <stdio.h>  // printf
+#include <unistd.h> // read
+#include <fcntl.h>  // flags
+#include <string.h> // memset
 
 //====================================
 // Defines...
 //------------------------------------
 #include "config.h"
+#include "vmpty.h"
 
 namespace LibVM {
 //====================================

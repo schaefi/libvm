@@ -28,63 +28,99 @@ VMPty::VMPty ( const QString& device ) {
 	recording = false;
 }
 
+//====================================
+// setOperationsMode
+//------------------------------------
 void VMPty::setOperationMode ( int m ) {
 	mode = m;
 	if (mode == VM_READ) {
-		fp = new QFile (pty);
-		fp -> open ( QIODevice::ReadOnly );
+		fp = open (pty.toLatin1().data(),O_RDONLY);
 	} else {
-		fp = new QFile (pty);
-		fp -> open ( QIODevice::WriteOnly );	
+		fp = open (pty.toLatin1().data(),O_WRONLY | O_NDELAY);
 	}
 }
 
+//====================================
+// run thread
+//------------------------------------
 void VMPty::run (void) {
 	if (mode == VM_READ) {
 		read();
 	}
+	if (mode == VM_INIT) {
+		checkBoot();
+	}
 }
 
+//====================================
+// checkBoot
+//------------------------------------
+void VMPty::checkBoot (void) {
+	while (true) {
+		sleep (1);
+		writeNoLock ("BOOT DONE");
+	}
+}
+
+//====================================
+// read
+//------------------------------------
 void VMPty::read  (void) {
-	QTextStream in(fp);
-	QString line = in.readLine();
-	while (! line.isNull()) {
-		//printf ("'%s'\n",line.toLatin1().data());
-		if (line.compare ("(none):/ # ") == 0) {
-			// printf ("UNLOCK\n");
+	QString *line = 0;
+	while ( line = read_line (fp) ) {
+		//printf ("'%s'\n",line->toLatin1().data());
+		if (line->compare ("(none):/ #") == 0) {
+			//printf ("**************** UNLOCK\n");
 			mutex.unlock();
 		}
 		if (recording) {
-			if (line.compare (done) == 0) {
+			if (line->compare (done) == 0) {
 				recording = false;
 				mutex.unlock();
 			}
 			QTextStream s(storage);
-			s << line << endl;
+			s << *line << endl;
 		}
-		line = in.readLine();
 	}
-	fp -> close();
+	close (fp);
 }
 
+//====================================
+// write
+//------------------------------------
 void VMPty::write (const QString& data) {
 	mutex.lock();
-	QTextStream out(fp);
-	out << data << endl << endl;
+	write_line (data,fp);
 }
 
+//====================================
+// writeNoLock
+//------------------------------------
+void VMPty::writeNoLock (const QString& data) {
+	write_line (data,fp);
+}
+
+//====================================
+// startRecordingUntil
+//------------------------------------
 void VMPty::startRecordingUntil (const QString& flag) {
 	recording = true;
 	storage   = new QString ();
 	done     = flag;
 }
 
+//====================================
+// readRecorded
+//------------------------------------
 QString* VMPty::readRecorded (void) {
 	return storage;
 }
 
+//====================================
+// Destructor
+//------------------------------------
 VMPty::~VMPty (void) {
-	fp -> close();
+	close (fp);
 }
 
 } // end namespace

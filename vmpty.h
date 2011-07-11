@@ -29,12 +29,19 @@ STATUS        : Status: Development
 #include <qtimer.h>
 #include <qmutex.h>
 #include <signal.h>
+#include <stdio.h>  // printf
+#include <unistd.h> // read
+#include <fcntl.h>  // flags
+#include <string.h> // memset
+
+#include "config.h"
 
 //====================================
 // Defines...
 //------------------------------------
 #define VM_READ  0
 #define VM_WRITE 1
+#define VM_INIT  2
 
 namespace LibVM {
 //====================================
@@ -51,10 +58,12 @@ class VMPty : public QThread {
 	public:
 	void read  (void);
 	void write (const QString&);
+	void writeNoLock (const QString&);
 	virtual void run ( void );
 	QString* readRecorded (void);
 	void startRecordingUntil (const QString&);
 	void setOperationMode (int);
+	void checkBoot (void);
 
 	private:
 	int mode;
@@ -63,7 +72,7 @@ class VMPty : public QThread {
 	QString done;
 	QString* storage;
 	QString pty;
-	QFile* fp;
+	int fp;
 
 	public:
 	VMPty ( const QString&);

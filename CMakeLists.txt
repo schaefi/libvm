@@ -8,7 +8,7 @@ include(${QT_USE_FILE})
 add_definitions( ${QT_DEFINITIONS} )
 include_directories( ${QT_INCLUDES} )
 
-set(libvm_SRCS  vmattach.cpp vmpty.cpp)
+set(libvm_SRCS  vmattach.cpp vmpty.cpp config.cpp)
 set(libvm_HEADERS vmattach.h vmpty.h)
 set(test_SRCS example/test.cpp)
 
