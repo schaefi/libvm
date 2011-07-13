@@ -104,6 +104,9 @@ bool VMAttach::init (void) {
 		return false;
 	}
 
+	//====================================
+	// write boot msg to boot terminal
+	//------------------------------------
 	VMPty* w = new VMPty (pty);
 	w -> setOperationMode (VM_INIT);
 	w -> start();
@@ -124,7 +127,7 @@ bool VMAttach::init (void) {
 			return true;
 		}
 	}
-	w->exit();
+	w->terminate();
 	close (mFD);
 	return false;
 }
