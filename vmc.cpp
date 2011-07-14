@@ -6,8 +6,9 @@
 #include <sys/wait.h>
 #include <getopt.h>
 #include <unistd.h>
-#include "../vmattach.h"
-#include "../vmpty.h"
+
+#include "vmattach.h"
+#include "vmpty.h"
 
 using namespace LibVM;
 

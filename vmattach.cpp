@@ -92,7 +92,10 @@ bool VMAttach::init (void) {
 	if (rpos >= 0) {
 		pty = modeExp.cap(1);
 	} else {
-		qError ("Didn't get a terminal device");
+		QString error;
+		QTextStream (&error)
+			<< "Didn't get a terminal device: " << in.data();
+		qError (error.toLatin1().data());
 		return false;
 	}
 	QFile* fp = new QFile (pty);

@@ -10,13 +10,13 @@ include_directories( ${QT_INCLUDES} )
 
 set(libvm_SRCS  vmattach.cpp vmpty.cpp config.cpp)
 set(libvm_HEADERS vmattach.h vmpty.h)
-set(vmpty_SRCS example/vmpty.cpp)
+set(vmc_SRCS vmc.cpp)
 
 QT4_WRAP_CPP(libvm_HEADERS_MOC ${libvm_HEADERS})
 
 add_library(vm SHARED ${libvm_SRCS} ${libvm_HEADERS_MOC})
 
-add_executable(vmpty ${vmpty_SRCS})
+add_executable(vmc ${vmc_SRCS})
 
-target_link_libraries(vmpty ${QT_LIBRARIES} vm)
+target_link_libraries(vmc ${QT_LIBRARIES} vm)
 

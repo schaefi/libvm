@@ -28,7 +28,7 @@ namespace LibVM {
 //====================================
 // Defines...
 //------------------------------------
-#define VM_BOOT "/home/ms/Project/libvm/boot.iso"
+#define VM_BOOT "/suse/ms/Project/libvm/boot.iso"
 
 //====================================
 // Defines (macros)...

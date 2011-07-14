@@ -1,15 +1,14 @@
 #!/bin/bash
 
-../build/vmpty \
-	--add-disk /tmp/mytest/LimeJeOS-openSUSE-11.4.x86_64-1.11.4.raw
-pty=/var/cache/pty
+../build/vmc --add-disk $1
 
+pty=/var/cache/pty
 if [ -e "$pty" ];then
 	pty=$(cat $pty)
 else
 	exit 1
 fi
-pid=$(pidof vmpty)
+pid=$(pidof vmc)
 
 echo "mount /dev/vda1 /mnt" > $pty
 echo "find /mnt/etc"        > $pty
