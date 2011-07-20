@@ -40,6 +40,18 @@ baseStripTranslations kiwi.mo
 
 rm -rf /usr/share/locale
 rm -rf /usr/share/syslinux
+rm -rf /etc/zypp
+rm -rf /etc/YaST2
+rm -rf /etc/ConsoleKit
+rm -rf /etc/alternatives
+rm -rf /etc/xinetd.d
+rm -rf /etc/gnupg
+rm -rf /etc/sysconfig
+rm -rf /usr/lib/zypp
+rm -rf /usr/share/zypp
+rm -rf /var/lib/zypp
+rm -rf /lib/systemd
+rm -rf /lib/mkinitrd
 
 #======================================
 # Umount kernel filesystems

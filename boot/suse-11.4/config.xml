@@ -52,7 +52,6 @@
 		<file name="fs/nls/nls_cp437.ko"/>
 		<file name="fs/nls/nls_iso8859-1.ko"/>
 		<file name="drivers/ata/*"/>
-		<file name="drivers/scsi/*"/>
 		<file name="drivers/message/fusion/*"/>
 		<file name="drivers/acpi/dock.ko"/>
 	</drivers>
@@ -89,7 +88,6 @@
 		<package name="dhcpcd"/>
 		<package name="e2fsprogs"/>
 		<package name="btrfsprogs"/>
-		<package name="file"/>
 		<package name="module-init-tools"/>
 		<package name="net-tools"/>
 		<package name="netcfg"/>
@@ -97,7 +95,6 @@
 		<package name="sysconfig"/>
 		<package name="sysfsutils"/>
 		<package name="util-linux"/>
-		<package name="grub"/>
 		<package name="squashfs"/>
 		<package name="make"/>
 		<package name="tar"/>
@@ -105,13 +102,12 @@
 		<package name="kiwi-tools"/>
 		<package name="kexec-tools"/>
 		<package name="parted"/>
-		<package name="syslinux"/>
+		<package name="grub"/>
 		<package name="xfsprogs"/>
 	</packages>
 	<packages type="bootstrap">
 		<package name="filesystem"/>
 		<package name="glibc"/>
-		<package name="diffutils"/>
 		<package name="procps"/>
 	</packages>
 	<packages type="delete">
@@ -154,5 +150,59 @@
 		<package name="pmtools"/>
 		<package name="suse-build-key"/>
 		<package name="make"/>
+		<!--some more-->
+		<package name="file"/>
+		<package name="perl-base"/>
+		<package name="libexpat1"/>
+		<package name="libxml2"/>
+		<package name="libgcrypt11"/>
+		<package name="info"/>
+		<package name="pinentry"/>
+		<package name="libksba"/>
+		<package name="libaugeas0"/>
+		<package name="update-alternatives"/>
+		<package name="gpg2"/>
+		<package name="gpg-pubkey"/>
+		<package name="libxcrypt"/>
+		<package name="libpth20"/>
+		<package name="keyutils-libs"/>
+		<package name="openssl"/>
+		<package name="libmodman1"/>
+		<package name="satsolver-tools"/>
+		<package name="libzypp"/>
+		<package name="licenses"/>
+		<package name="libdw1"/>
+		<package name="iptables"/>
+		<package name="glib2-branding-openSUSE"/>
+		<package name="pam-modules"/>
+		<package name="login"/>
+		<package name="pwdutils"/>
+		<package name="openSUSE-release"/>
+		<package name="dbus"/>
+		<package name="sysconfig"/>
+		<package name="mkinitrd"/>
+		<package name="libpopt0"/>
+		<package name="liblua5"/>
+		<package name="libdb"/>
+		<package name="libaudit1"/>
+		<package name="fillup"/>
+		<package name="libassuan0"/>
+		<package name="zypper"/>
+		<package name="libgpg-error0"/>
+		<package name="libopenssl1_0_0"/>
+		<package name="insserv"/>
+		<package name="libssh2"/>
+		<package name="pam"/>
+		<package name="krb5"/>
+		<package name="libldap"/>
+		<package name="dirmngr"/>
+		<package name="kiwi-tools"/>
+		<package name="cpio"/>
+		<package name="sysvinit"/>
+		<package name="squashfs"/>
+		<package name="pkg-config"/>
+		<package name="ncurses-utils"/>
+		<package name="libglib"/>
+		<package name="perl-Bootloader"/>
 	</packages>
 </image>

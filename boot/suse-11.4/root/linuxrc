@@ -30,11 +30,6 @@ export DEBUG=0
 . /include
 
 #======================================
-# Update library path
-#--------------------------------------
-ldconfig
-
-#======================================
 # mount filesystems and start udev
 #--------------------------------------
 mountSystemFilesystems &>/dev/null
@@ -44,11 +39,6 @@ udevStart
 # include kernel params to env
 #--------------------------------------
 includeKernelParameters
-
-#======================================
-# probe devices not loaded by udev
-#--------------------------------------
-probeDevices
 
 #======================================
 # Shell
