@@ -23,7 +23,6 @@
 		<profile name="rt" description="KERNEL: RealTime kernel"/>
 	</profiles>
 	<drivers type="drivers">
-		<file name="crypto/*"/>
 		<file name="drivers/virtio/*"/>
 		<file name="drivers/block/virtio_blk.ko"/>
 		<file name="drivers/char/hw_random/virtio-rng.ko"/>
@@ -32,8 +31,6 @@
 		<file name="drivers/md/*"/>
 		<file name="drivers/block/loop.ko"/>
 		<file name="drivers/ide/*"/>
-		<file name="lib/zlib_deflate/zlib_deflate.ko"/>
-		<file name="lib/libcrc32c.ko"/>
 		<file name="fs/btrfs/*"/>
 		<file name="fs/ext3/*"/>
 		<file name="fs/ext4/*"/>
@@ -58,8 +55,6 @@
 		<file name="drivers/scsi/*"/>
 		<file name="drivers/message/fusion/*"/>
 		<file name="drivers/acpi/dock.ko"/>
-		<file name="lib/crc-t10dif.ko"/>
-		<file name="lib/crc16.ko"/>
 	</drivers>
 	<drivers type="drivers" profiles="xen">
 		<file name="drivers/xen/*"/>
@@ -95,7 +90,6 @@
 		<package name="e2fsprogs"/>
 		<package name="btrfsprogs"/>
 		<package name="file"/>
-		<package name="hwinfo"/>
 		<package name="module-init-tools"/>
 		<package name="net-tools"/>
 		<package name="netcfg"/>
@@ -105,11 +99,9 @@
 		<package name="util-linux"/>
 		<package name="grub"/>
 		<package name="squashfs"/>
-		<package name="fribidi"/>
 		<package name="make"/>
 		<package name="tar"/>
 		<package name="lvm2"/>
-		<package name="cryptsetup"/>
 		<package name="kiwi-tools"/>
 		<package name="kexec-tools"/>
 		<package name="parted"/>
