@@ -1,5 +1,6 @@
 all:prep
-	make -C build all
+	#make -C build VERBOSE=1 all
+	make -C build
 
 prep:CMakeLists.txt
 	mkdir -p build
