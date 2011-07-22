@@ -35,7 +35,10 @@ export CFLAGS=$RPM_OPT_FLAGS CXXFLAGS="$RPM_OPT_FLAGS" \
 #-------------------------------------------------
 (
 	mkdir build && cd build && \
-	cmake ../ -DCMAKE_INSTALL_PREFIX="/usr"
+	cmake ../ $CMAKE_FLAGS \
+		-DCMAKE_INSTALL_PREFIX=%{_prefix} \
+		-DLIB=%{_lib} \
+		-DCMAKE_BUILD_TYPE=Release
 )
 make -C build all
 
@@ -43,7 +46,7 @@ make -C build all
 # install sources
 #-------------------------------------------------
 %install
-#TODO
+make -C build DESTDIR=$RPM_BUILD_ROOT install
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -53,4 +56,5 @@ make -C build all
 #-------------------------------------------------
 %files
 %defattr(-,root,root)
-#TODO
+%{_bindir}/vmc
+%{_lib}/libvm.so

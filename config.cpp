@@ -48,10 +48,10 @@ QString* read_line (int fd) {
 //====================================
 // write_line
 //------------------------------------
-void write_line (const QString& line,int fd) {
+int write_line (const QString& line,int fd) {
 	QString msg;
 	QTextStream (&msg) << line << endl << endl;
-	write (fd,msg.toLatin1().data(),msg.length());
+	return write (fd,msg.toLatin1().data(),msg.length());
 }
 
 }

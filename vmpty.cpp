@@ -67,7 +67,7 @@ void VMPty::checkBoot (void) {
 void VMPty::read  (void) {
 	QString *line = 0;
 	storage = new QString();
-	while ( line = read_line (fp) ) {
+	while ( (line = read_line (fp)) ) {
 		//printf ("==> '%s'\n",line->toLatin1().data());
 		if (line->contains("BOOT DONE")) {
 			continue;
@@ -91,16 +91,16 @@ void VMPty::read  (void) {
 //====================================
 // write
 //------------------------------------
-void VMPty::write (const QString& data) {
+int VMPty::write (const QString& data) {
 	mutex.lock();
-	write_line (data,fp);
+	return write_line (data,fp);
 }
 
 //====================================
 // writeNoLock
 //------------------------------------
-void VMPty::writeNoLock (const QString& data) {
-	write_line (data,fp);
+int VMPty::writeNoLock (const QString& data) {
+	return write_line (data,fp);
 }
 
 //====================================

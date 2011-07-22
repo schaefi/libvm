@@ -1,9 +1,12 @@
-all:build
+all:prep
 	make -C build all
 
-build:CMakeLists.txt
+prep:CMakeLists.txt
 	mkdir -p build
 	cd build && cmake ..
 
+build:
+	./.doit -p --local
+
 clean:
-	rm -rf build	
+	rm -rf build

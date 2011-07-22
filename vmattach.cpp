@@ -119,7 +119,7 @@ bool VMAttach::init (void) {
 	//------------------------------------
 	int mFD = open (pty.toLatin1().data(),O_RDONLY);
 	QString *line = 0;
-	while ( line = read_line (mFD) ) {
+	while ( (line = read_line (mFD)) ) {
 		//printf ("___%s\n",line->toLatin1().data());
 		QRegExp bootDoneExp ("BOOT DONE");
 		int rpos = bootDoneExp.indexIn (*line);

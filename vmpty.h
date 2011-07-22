@@ -57,8 +57,8 @@ class VMPty : public QThread {
 
 	public:
 	void read  (void);
-	void write (const QString&);
-	void writeNoLock (const QString&);
+	int write (const QString&);
+	int writeNoLock (const QString&);
 	virtual void run ( void );
 	QString* readRecorded (void);
 	void startRecordingUntil (const QString&);

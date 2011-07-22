@@ -82,7 +82,9 @@ int main(int argc,char*argv[]) {
 	QTextStream fp (&data);
 	fp << device << endl;
 	data.close();
-	daemon(0,0);
+	if ((daemon(0,0)) == -1) {
+		return 1;
+	}
 	return app.exec();
 }
 

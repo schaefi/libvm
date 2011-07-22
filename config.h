@@ -40,7 +40,7 @@ namespace LibVM {
 //------------------------------------
 void handle_error (const char*, int, const char*);
 QString* read_line (int);
-void write_line (const QString&,int);
+int write_line (const QString&,int);
 
 }
 #endif
