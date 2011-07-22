@@ -8,7 +8,7 @@ include(${CMAKE_SOURCE_DIR}/VERSION.cmake)
 
 SET(VERSION "${LIBVM_MAJOR}.${LIBVM_MINOR}.${LIBVM_PATCH}")
 
-add_definitions(-DVERSION=\\\"${VERSION}\\\")
+add_definitions(-DVERSION=\"${VERSION}\")
 add_definitions( ${QT_DEFINITIONS} )
 
 include_directories( ${QT_INCLUDES} )
